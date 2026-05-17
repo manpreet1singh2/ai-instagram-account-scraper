@@ -24,7 +24,7 @@ const STATUS_ICONS = {
 
 export default function ExportPage() {
   const qc = useQueryClient();
-  const [format, setFormat] = useState("CSV");
+  const [exportFormat, setExportFormat] = useState("CSV");
   const [minScore, setMinScore] = useState(0);
 
   const { data: jobsData, isLoading } = useQuery({
@@ -34,7 +34,7 @@ export default function ExportPage() {
   });
 
   const createMutation = useMutation({
-    mutationFn: () => exportApi.create({ format, filters: { minScore: minScore || undefined } }),
+    mutationFn: () => exportApi.create({ format: exportFormat, filters: { minScore: minScore || undefined } }),
     onSuccess: () => {
       toast.success("📤 Export job started!");
       qc.invalidateQueries({ queryKey: ["export", "jobs"] });
@@ -62,9 +62,9 @@ export default function ExportPage() {
             {FORMAT_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
-                onClick={() => setFormat(opt.value)}
+                onClick={() => setExportFormat(opt.value)}
                 className={`p-4 rounded-xl border text-left transition-all ${
-                  format === opt.value
+                  exportFormat === opt.value
                     ? "border-brand-500/40 bg-brand-500/10"
                     : "border-surface-border bg-surface-hover hover:border-surface-hover"
                 }`}
@@ -102,7 +102,7 @@ export default function ExportPage() {
           {createMutation.isPending ? (
             <><Loader2 size={16} className="animate-spin" /> Preparing export...</>
           ) : (
-            <><Download size={16} /> Export as {format}</>
+            <><Download size={16} /> Export as {exportFormat}</>
           )}
         </motion.button>
       </motion.div>

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { BarChart3, TrendingUp, PieChart as PieIcon, Zap, Loader2 } from "lucide-react";
+import { TrendingUp, PieChart as PieIcon, Zap, Loader2 } from "lucide-react";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   AreaChart, Area, PieChart, Pie, Cell, Legend, ScatterChart, Scatter, ZAxis
@@ -76,7 +76,7 @@ export default function AnalyticsPage() {
         {/* Niche Bar Chart */}
         <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <BarChart3 size={16} className="text-brand-400" />
+            <BarChart3Icon size={16} className="text-brand-400" />
             <h2 className="text-white font-semibold text-sm">Top Niches</h2>
           </div>
           {nichesLoading ? (
@@ -177,6 +177,6 @@ export default function AnalyticsPage() {
   );
 }
 
-function BarChart3({ size, className }: { size: number; className?: string }) {
+function BarChart3Icon({ size, className }: { size: number; className?: string }) {
   return <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="3" y="12" width="4" height="9" /><rect x="10" y="6" width="4" height="15" /><rect x="17" y="3" width="4" height="18" /></svg>;
 }
