@@ -1,0 +1,9 @@
+{
+  "name": "ai-instagram-account-scraper-root",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run build --prefix frontend",
+    "vercel-build": "npm run build --prefix frontend"
+  }
+}
